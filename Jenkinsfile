@@ -11,6 +11,13 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("Build service artefact") {
+            steps {
+                echo '================= Building service artefact ================='
+                sh 'mvn clean'
+                sh 'mvn install'
+            }
+        }
         stage("Build image") {
             steps {
                 sh 'docker build .'
