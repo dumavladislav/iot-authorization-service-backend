@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage("Build service artefact") {
             steps {
-                echo '================= Building service artefact ================='
+                echo '================== Building service artefact =================='
                 sh 'mvn clean'
                 sh 'mvn install'
             }
