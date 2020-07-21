@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Build image") {
             steps {
-                sh 'docker build dumskyhome:latest .'
+                sh 'docker build -t dumskyhome:latest .'
             }
         }
     }
