@@ -15,6 +15,7 @@ pipeline {
         stage("Copy to netbook") {
             steps {
                 echo '================== Copy to netbook =================='
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'mkdir ~/iot-authorization-service-backend > mvn clean'"
                 sh "scp -r * root@192.168.1.53:~/iot-authorization-service-backend"
             }
         }
