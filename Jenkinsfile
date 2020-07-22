@@ -38,7 +38,7 @@ pipeline {
         }
         stage("Build image") {
             steps {
-                sh "ssh -p 23 root@dumskyhome.keenetic.name 'docker build -t vladislavduma/iot-authorization-service-backend:latest .'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend > docker build -t vladislavduma/iot-authorization-service-backend:latest .'"
             }
         }
         stage("Push image to docker registry") {
