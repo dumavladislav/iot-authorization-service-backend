@@ -15,15 +15,15 @@ pipeline {
         stage("Copy to netbook") {
             steps {
                 echo '================== Copy to netbook =================='
-                sh "ssh -p 23 root@dumskyhome.keenetic.name 'rm -f -r iot-authorization-service-backend && mkdir ~/iot-authorization-service-backend > mvn clean'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'rm -f -r iot-authorization-service-backend && mkdir ~/iot-authorization-service-backend'"
                 sh "scp -r * root@192.168.1.53:~/iot-authorization-service-backend"
             }
         }
         stage("Build service artefact") {
             steps {
                 echo '================== Building service artefact =================='
-                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend > mvn clean'"
-                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend > mvn install'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend && mvn clean'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend && mvn install'"
             }
         }
         stage("DockerHub login") {
@@ -38,7 +38,7 @@ pipeline {
         }
         stage("Build image") {
             steps {
-                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend > docker build -t vladislavduma/iot-authorization-service-backend:latest .'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'cd ~/iot-authorization-service-backend && docker build -t vladislavduma/iot-authorization-service-backend:latest .'"
             }
         }
         stage("Push image to docker registry") {
