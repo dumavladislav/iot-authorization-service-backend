@@ -31,13 +31,13 @@ pipeline {
         }
         stage("Build image") {
             steps {
-                sh 'docker build -t vladislavduma/dumskyhome:latest .'
+                sh 'docker build -t vladislavduma/iot-authorization-service-backend:latest .'
             }
         }
         stage("Push image to docker registry") {
             steps{
                 echo '================== DockerHub Push =================='
-                sh "docker push vladislavduma/dumskyhome:latest"
+                sh "docker push vladislavduma/iot-authorization-service-backend:latest"
             }
         }
     }
