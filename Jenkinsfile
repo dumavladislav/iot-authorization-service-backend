@@ -40,5 +40,11 @@ pipeline {
                 sh "docker push vladislavduma/iot-authorization-service-backend:latest"
             }
         }
+        stage("Run image on Backend server") {
+            steps{
+                cho '================== Running on Backend =================='
+                sh "ssh root@dumskyhome.keenetic.net -p 23 'docker run vladislavduma/iot-authorization-service-backend:latest'"
+            }
+        }
     }
 }
