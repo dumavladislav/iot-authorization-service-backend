@@ -43,7 +43,7 @@ pipeline {
         stage("Run image on Backend server") {
             steps{
                 echo '================== Running on Backend =================='
-                sh "ssh root@dumskyhome.keenetic.net -p 23 'docker run vladislavduma/iot-authorization-service-backend:latest'"
+                sh "ssh -p 23 root@dumskyhome.keenetic.name 'docker run vladislavduma/iot-authorization-service-backend:latest --restart unless-stopped -it'"
             }
         }
     }
