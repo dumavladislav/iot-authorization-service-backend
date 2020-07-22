@@ -31,13 +31,13 @@ pipeline {
         }
         stage("Build image") {
             steps {
-                sh 'docker build -t dumavladislav/dumskyhome:latest .'
+                sh 'docker build -t vladislavduma/dumskyhome:latest .'
             }
         }
         stage("Push image to docker registry") {
             steps{
                 echo '================== DockerHub Push =================='
-                sh "docker push dumavladislav/dumskyhome:latest"
+                sh "docker push vladislavduma/dumskyhome:latest"
             }
         }
     }
