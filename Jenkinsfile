@@ -19,9 +19,25 @@ pipeline {
                 sh 'mvn install'
             }
         }
+        stage("DockerHub login") {
+            steps {
+                echo '================== DockerHub login =================='
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-dumavladislav', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
         stage("Build image") {
             steps {
                 sh 'docker build -t dumavladislav/dumskyhome:latest .'
+            }
+        }
+        stage("Push image to docker registry") {
+            steps{
+                echo '================== DockerHub Push =================='
+                sh "docker push dumavladislav/dumskyhome:latest"
             }
         }
     }
