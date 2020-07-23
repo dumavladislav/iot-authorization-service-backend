@@ -44,8 +44,8 @@ pipeline {
             steps{
                 echo '================== Running on Backend =================='
                 // sh "ssh -p 23 root@dumskyhome.keenetic.name 'docker run vladislavduma/iot-authorization-service-backend:latest --restart unless-stopped -it'"
-                sh 'docker stop iot-authorization-service-backend:latest'
-                sh 'docker rm iot-authorization-service-backend:latest'
+                sh 'docker stop iot-authorization-service-backend: latest ||true'
+                sh 'docker rm iot-authorization-service-backend:latest ||true'
                 sh 'docker run -d --restart unless-stopped --name iot-authorization-service-backend:latest' +
                         ' -e DB_URL=$DB_URL' +
                         ' -e DB_USR=$DB_USR' +
