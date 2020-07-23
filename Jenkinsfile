@@ -44,15 +44,19 @@ pipeline {
             steps{
                 echo '================== Running on Backend =================='
                 // sh "ssh -p 23 root@dumskyhome.keenetic.name 'docker run vladislavduma/iot-authorization-service-backend:latest --restart unless-stopped -it'"
-                sh 'docker run vladislavduma/iot-authorization-service-backend:latest ' +
-                        '--restart unless-stopped -it' +
-                        ' -e DB_URL=$DB_URL\n' +
-                        ' -e DB_USR=$DB_USR\n' +
-                        ' -e DB_PASSWORD=$DB_PASSWORD\n' +
-                        ' -e MQTT_SERVER_URL=$MQTT_SERVER_URL\n' +
-                        ' -e MQTT_USR=$MQTT_USR\n' +
-                        ' -e MQTT_PASSWORD=$MQTT_PASSWORD\n' +
-                        ' -e MQTT_CLIENT_ID=$MQTT_CLIENT_ID'
+                withEnv(['VAR1=VALUE ONE',
+                         "VAR2=${someGroovyVar}"
+                ]) {
+                    sh 'docker run vladislavduma/iot-authorization-service-backend:latest ' +
+                            '--restart unless-stopped -it' +
+                            ' -e DB_URL=$DB_URL' +
+                            ' -e DB_USR=$DB_USR' +
+                            ' -e DB_PASSWORD=$DB_PASSWORD' +
+                            ' -e MQTT_SERVER_URL=$MQTT_SERVER_URL' +
+                            ' -e MQTT_USR=$MQTT_USR' +
+                            ' -e MQTT_PASSWORD=$MQTT_PASSWORD' +
+                            ' -e MQTT_CLIENT_ID=$MQTT_CLIENT_ID'
+                }
             }
         }
     }
